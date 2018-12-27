@@ -20,7 +20,7 @@ MCSDisplayInteger humid("humid"); //濕度
 MCSDisplayInteger soil("soil"); //土壤濕度
 MCSControllerOnOff MySwitch("MySwitch"); //風扇手動開關
 MCSControllerOnOff MySwitch1("MySwitch1"); //噴水手動開關
-MCSControllerAnalog fant("fant"); //風扇自動開關溫度設定slider
+MCSControllerAnalog slider("slider"); //風扇自動開關溫度設定slider
 
 void setup()
 {
@@ -69,6 +69,11 @@ void loop()
   Serial.print("土壤濕度=");
   Serial.println(s);
   
+  // 更新開啟風扇溫度
+  if (slider.updated()) {
+    th = slider.value();
+  }
+
   // 風扇控制
   if (MySwitch.updated() || t > th){
     Serial.print("開啟風扇降溫");
