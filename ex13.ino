@@ -6,13 +6,11 @@
 DHT dht(4, DHT11);
 LiquidCrystal_I2C lcd_i2c(0x27);
 
-int t;
-int h;
-int s;
-int w; //噴水
-int f; //風扇
+int t; //溫度
+int h; //濕度
+int s; //土壤濕度
 int th = 27; //風扇自動開關溫度預設值
-char ss[3]; 
+char ss[3]; //土壤濕度文字格式
 char _lwifi_ssid[] = "lita";
 char _lwifi_pass[] = "0911027768";
 
@@ -94,6 +92,7 @@ void loop()
       digitalWrite(2, LOW);
     }
   }
+  
   // LCD顯示
   lcd_i2c.setCursor(0,0);
   lcd_i2c.print("T=");
